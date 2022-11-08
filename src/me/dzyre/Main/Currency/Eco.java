@@ -141,14 +141,8 @@ public class Eco implements Listener, CommandExecutor {
 			}
 		} else if (args.length == 2) {
 			if (label.equalsIgnoreCase("eco")) {
-				if (args[0].equalsIgnoreCase("get")) {
-					OfflinePlayer player = Bukkit.getOfflinePlayer(args[1]);
-					if (player == null) {
-						sender.sendMessage(ChatColor.RED + "Invalid Player: " + ChatColor.AQUA + "" + args[1]);
-					} else {
-						sender.sendMessage(" This player has: $" + checkEco(player));
-					}
-				}
+				sender.sendMessage(
+						ChatColor.RED + "" + ChatColor.BOLD + "Usage: /eco <give:remove:set> <player> <amount>");
 			} else if (label.equalsIgnoreCase("pay")) {
 				OfflinePlayer player = Bukkit.getOfflinePlayer(args[0]);
 				if (player == null || (!(player.hasPlayedBefore()))) {
@@ -170,10 +164,17 @@ public class Eco implements Listener, CommandExecutor {
 
 			}
 
-			else {
-				sender.sendMessage(
-						ChatColor.RED + "" + ChatColor.BOLD + "Usage: /eco <give:remove:set> <player> <amount>");
+			if ((label.equalsIgnoreCase("bal")) || (label.equalsIgnoreCase("balance"))) {
+				OfflinePlayer player = Bukkit.getOfflinePlayer(args[0]);
+				if (player == null) {
+					sender.sendMessage(ChatColor.RED + "Invalid Player: " + ChatColor.AQUA + "" + args[0]);
+				} else {
+					sender.sendMessage(ChatColor.AQUA + "" + player.getName() + "'s" + ChatColor.GREEN + " Balance: $"
+							+ checkEco(player));
+					return true;
+				}
 			}
+
 		} else if (args.length == 3) {
 			if (label.equalsIgnoreCase("eco")) {
 				if (sender.hasPermission("eco")) {
@@ -232,8 +233,8 @@ public class Eco implements Listener, CommandExecutor {
 		Player player = (Player) event.getWhoClicked();
 		event.setCancelled(true);
 		if (event.getCurrentItem().getType().equals(Material.BARRIER)) {
-			
-			if(event.getClickedInventory().equals(mainShop)) {
+
+			if (event.getClickedInventory().equals(mainShop)) {
 				player.openInventory(menu);
 				return;
 			}
@@ -266,12 +267,11 @@ public class Eco implements Listener, CommandExecutor {
 			return;
 		}
 		/*
-		if ((event.getCurrentItem().getType().equals(Material.DIAMOND)) && (event.getCurrentItem().hasItemMeta())
-				&& event.getClickedInventory().equals(mainSell)) {
-			player.openInventory(sell);
-			temp = player.getOpenInventory();
-			return;
-		}*/
+		 * if ((event.getCurrentItem().getType().equals(Material.DIAMOND)) &&
+		 * (event.getCurrentItem().hasItemMeta()) &&
+		 * event.getClickedInventory().equals(mainSell)) { player.openInventory(sell);
+		 * temp = player.getOpenInventory(); return; }
+		 */
 		if ((event.getCurrentItem().getType().equals(Material.COOKED_BEEF)) && (event.getCurrentItem().hasItemMeta())
 				&& event.getClickedInventory().equals(mainShop)) {
 			currInv = "food";
@@ -349,7 +349,7 @@ public class Eco implements Listener, CommandExecutor {
 	}
 
 	public void confirm(ItemStack item, Inventory inv, List<String> lore) {
-		if(item.getType().equals(Material.BARRIER)) {
+		if (item.getType().equals(Material.BARRIER)) {
 			return;
 		}
 		Cancel = Bukkit.createInventory(null, 9, ChatColor.GREEN + "" + ChatColor.BOLD + "Confirm");
@@ -420,7 +420,7 @@ public class Eco implements Listener, CommandExecutor {
 	public void buy(ItemStack item, UUID uuid, Player player) {
 		String amount = item.getItemMeta().getLore().get(1);
 		amount = amount.substring(1).replaceAll("\\s", "");
-		if(currency.get(uuid) == 0) {
+		if (currency.get(uuid) == 0) {
 			player.sendMessage(ChatColor.RED + "You don't have enough money");
 			player.openInventory(mainShop);
 			return;
