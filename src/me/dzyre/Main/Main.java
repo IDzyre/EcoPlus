@@ -42,7 +42,6 @@ public class Main extends JavaPlugin {
 		//getCommand("Buy").setExecutor(eco);
 		//getCommand("Sell").setExecutor(eco);
 		getCommand("Shop").setExecutor(eco);
-		System.out.println("Welcome");
 		this.getServer().getPluginManager().registerEvents(eco, this);
 
 		try {
@@ -53,9 +52,7 @@ public class Main extends JavaPlugin {
 		
 	}
 	@Override
-	public void onDisable() {
-		System.out.println("Gudbie");
-		
+	public void onDisable() {		
 		try {
 		eco.saveCurrency();
 		} catch (IOException e) {

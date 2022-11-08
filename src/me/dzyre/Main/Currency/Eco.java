@@ -232,38 +232,49 @@ public class Eco implements Listener, CommandExecutor {
 		Player player = (Player) event.getWhoClicked();
 		event.setCancelled(true);
 		if (event.getCurrentItem().getType().equals(Material.BARRIER)) {
+			
+			if(event.getClickedInventory().equals(mainShop)) {
+				player.openInventory(menu);
+				return;
+			}
 			if (currInv == "food" || currInv == "buy") {
 				player.openInventory(mainShop);
 				return;
 			}
 			if (currInv == "sell") {
-				player.openInventory(mainSell);
+				player.openInventory(menu);
 				return;
 			}
+			return;
 		}
 		if (event.getCurrentItem().getType().equals(Material.DIAMOND)
 				&& event.getCurrentItem().getItemMeta().getDisplayName().contains("Buy")) {
+			currInv = "buyMenu";
 			player.openInventory(mainShop);
 			return;
 		}
 		if (event.getCurrentItem().getType().equals(Material.PAPER)
 				&& event.getCurrentItem().getItemMeta().getDisplayName().contains("Sell")) {
-			player.openInventory(mainSell);
+			currInv = "sell";
+			player.openInventory(sell);
 			return;
 		}
 		if ((event.getCurrentItem().getType().equals(Material.DIAMOND_CHESTPLATE))
 				&& (event.getCurrentItem().hasItemMeta()) && event.getClickedInventory().equals(mainShop)) {
+			currInv = "buy";
 			player.openInventory(buy);
 			return;
 		}
+		/*
 		if ((event.getCurrentItem().getType().equals(Material.DIAMOND)) && (event.getCurrentItem().hasItemMeta())
 				&& event.getClickedInventory().equals(mainSell)) {
 			player.openInventory(sell);
 			temp = player.getOpenInventory();
 			return;
-		}
+		}*/
 		if ((event.getCurrentItem().getType().equals(Material.COOKED_BEEF)) && (event.getCurrentItem().hasItemMeta())
 				&& event.getClickedInventory().equals(mainShop)) {
+			currInv = "food";
 			player.openInventory(foodItems);
 			return;
 		}
@@ -338,6 +349,9 @@ public class Eco implements Listener, CommandExecutor {
 	}
 
 	public void confirm(ItemStack item, Inventory inv, List<String> lore) {
+		if(item.getType().equals(Material.BARRIER)) {
+			return;
+		}
 		Cancel = Bukkit.createInventory(null, 9, ChatColor.GREEN + "" + ChatColor.BOLD + "Confirm");
 
 		ItemMeta meta = item.getItemMeta();

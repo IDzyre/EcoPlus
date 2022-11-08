@@ -23,6 +23,7 @@ public class CreateInventories extends Eco {
 		foodItems.setItem(8, back);
 		buy.setItem(8, back);
 		sell.setItem(8, back);
+		mainShop.setItem(8, back);
 		//
 
 		meta.setDisplayName(ChatColor.GOLD + "Armor/Weapons");
@@ -81,7 +82,7 @@ public class CreateInventories extends Eco {
 		setShopItem(Material.COOKED_CHICKEN, foodItems, 4, true);
 		setShopItem(Material.COOKED_MUTTON, foodItems, 5, true);
 		setShopItem(Material.GOLDEN_CARROT, foodItems, 6, true);
-		setShopItem(Material.APPLE, foodItems, 0, true);
+		
 		setShopItem(Material.APPLE, sell, 0, false);
 		setShopItem(Material.BAKED_POTATO, sell, 1, false);
 		setShopItem(Material.COOKED_BEEF, sell, 2, false);
@@ -89,12 +90,33 @@ public class CreateInventories extends Eco {
 		setShopItem(Material.COOKED_CHICKEN, sell, 4, false);
 		setShopItem(Material.COOKED_MUTTON, sell, 5, false);
 		setShopItem(Material.GOLDEN_CARROT, sell, 6, false);
+		setShopItem(Material.BREAD, sell, 7, false);
 		setShopItem(Material.COBBLESTONE, sell, 9, false);
-		setShopItem(Material.OAK_LOG, sell, 10, false); 
-		setShopItem(Material.SPRUCE_LOG, sell, 11, false);
-		setShopItem(Material.DARK_OAK_LOG, sell, 12, false);
-		setShopItem(Material.ACACIA_LOG, sell, 13, false);
-		setShopItem(Material.JUNGLE_LOG, sell, 14, false);
+		setShopItem(Material.STONE, sell, 10, false);
+		setShopItem(Material.OAK_LOG, sell, 11, false); 
+		setShopItem(Material.SPRUCE_LOG, sell, 12, false);
+		setShopItem(Material.DARK_OAK_LOG, sell, 13, false);
+		setShopItem(Material.ACACIA_LOG, sell, 14, false);
+		setShopItem(Material.JUNGLE_LOG, sell, 15, false);
+		setShopItem(Material.COAL, sell, 18, false);
+		setShopItem(Material.IRON_INGOT, sell, 19, false);
+		setShopItem(Material.GOLD_INGOT, sell, 20, false);
+		setShopItem(Material.DIAMOND, sell, 21, false);
+		setShopItem(Material.EMERALD, sell, 22, false);
+		setShopItem(Material.SUGAR_CANE, sell, 27, false);
+		setShopItem(Material.WHEAT, sell, 28, false);
+		setShopItem(Material.COCOA_BEANS, sell, 29, false);
+		setShopItem(Material.CACTUS, sell, 30, false);
+		setShopItem(Material.MELON_SLICE, sell, 31, false);
+		setShopItem(Material.PUMPKIN, sell, 32, false);
+		setShopItem(Material.CARROT, sell, 33, false);
+		setShopItem(Material.POTATO, sell, 34, false);
+		setShopItem(Material.LEATHER, sell, 35, false);
+		setShopItem(Material.CHICKEN, sell, 36, false);
+		setShopItem(Material.MUTTON, sell, 37, false);
+		setShopItem(Material.PORKCHOP, sell, 38, false);
+		setShopItem(Material.BEEF, sell, 39, false);
+
 		
 	}
 	
