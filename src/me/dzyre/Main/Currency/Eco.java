@@ -244,9 +244,6 @@ public class Eco implements Listener, CommandExecutor {
       event.getCurrentItem().getItemMeta().getDisplayName() == null) {
       return;
     }
-    if ((event.getClickedInventory().equals(event.getWhoClicked().getInventory()))) {
-      return;
-    }
     if (!(event.getInventory().equals(mainBuy) || event.getInventory().equals(buySpawners) || event.getInventory().equals(buyArmor) ||
         event.getInventory().equals(menu) || event.getInventory().equals(buyFoodItems) ||
         event.getInventory().equals(sellFoodItems) || event.getInventory().equals(mainSell) ||
@@ -259,7 +256,12 @@ public class Eco implements Listener, CommandExecutor {
           (event.getCurrentItem().getItemMeta().getDisplayName().contains(ChatColor.RED + "Cancel")))))) {
         return;
       }
+      if ((event.getClickedInventory().equals(event.getWhoClicked().getInventory()))) {
+        event.setCancelled(true);
+        return;
+      }
     }
+    
     Player player = (Player) event.getWhoClicked();
     event.setCancelled(true);
     if (event.getCurrentItem().getType().equals(Material.BARRIER)) {
