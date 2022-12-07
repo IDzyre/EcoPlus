@@ -14,3 +14,6 @@ commands:
     usage: /<command>
   shop:
     usage: /<command>
+  backpack:
+    usage: /<command>
+    aliases: [bp]
